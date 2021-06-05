@@ -13,6 +13,9 @@ import uuid
 
 class Category(models.Model):
 
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     name = models.CharField(_("slug name"), max_length=50)
     slug = models.SlugField()
 
