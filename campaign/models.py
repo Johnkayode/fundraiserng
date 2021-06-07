@@ -7,6 +7,8 @@ from datetime import date
 
 from account.models import CustomUser
 
+from campaign.utils import find_date_difference
+
 import uuid
 
 
@@ -80,9 +82,8 @@ class Campaign(models.Model):
         '''
 
         deadline = self.deadline
-        todays_date = date.today()
-
-        pass
+        
+        return find_date_difference(deadline)
 
 
 class CampaignAttachment(models.Model):
