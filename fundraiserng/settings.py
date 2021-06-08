@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'main',
     'account',
     'campaign',
     'donation'
@@ -47,7 +48,7 @@ ROOT_URLCONF = 'fundraiserng.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,7 +117,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'static/'),
-) 
+)
+STATIC_ROOT = 'var/static_root'
 
 MEDIA_URL = '/media/'
 
