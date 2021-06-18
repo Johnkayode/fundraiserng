@@ -1,14 +1,28 @@
 <template>
-  <Home />
+  <div>
+    <div class="nav-item">
+          <router-link to="/" class="nav-link">
+            Home
+          </router-link>
+          <router-link to="/login" class="nav-link">
+            Login
+          </router-link>
+          <div class="container">
+            <router-view></router-view>
+          </div>
+    </div>
+  </div>
 </template>
 
+
 <script>
-import Home from './components/Home.vue'
+
+
 
 export default {
   name: 'App',
   components: {
-    Home
+ 
   }
 }
 </script>
