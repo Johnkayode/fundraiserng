@@ -1,5 +1,9 @@
 <template>
-  <div>Landing Page (Vue/Django) </div>
+  <div>
+    <div class="mt-4">
+      <h1>Landing Page (Vue/Django)</h1>
+    </div> 
+  </div>
 </template>
 
 <script>

@@ -1,21 +1,21 @@
 import os
 
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o#pu)dk=ca!=!(ru78_pu7gtr6&r+jbg93z7!wjs#^lj=ir+ed'
+SECRET_KEY = '#pu)dk=ca!=!(ru78_pu7ghdhdjdkddiaakatr6&r+jbg93z7!wjs#^lj=ir+ed'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Application definition
@@ -27,15 +27,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main',
+
+    'rest_framework',
+    'rest_framework.authtoken',
+    'corsheaders',
+
+
     'account',
     'campaign',
     'donation'
+
+  
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -95,6 +103,44 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+         'rest_framework.permissions.AllowAny',
+        ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+     'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+     )
+}
+
+JWT_AUTH = {
+  'JWT_ENCODE_HANDLER':
+  'rest_framework_jwt.utils.jwt_encode_handler',
+  'JWT_DECODE_HANDLER':
+  'rest_framework_jwt.utils.jwt_decode_handler',
+  'JWT_PAYLOAD_HANDLER':
+  'rest_framework_jwt.utils.jwt_payload_handler',
+  'JWT_PAYLOAD_GET_USER_ID_HANDLER':
+  'rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler',
+  'JWT_RESPONSE_PAYLOAD_HANDLER':
+  'rest_framework_jwt.utils.jwt_response_payload_handler',
+ 
+  'JWT_SECRET_KEY': 'mysecretkeyjwtdjangosiwiuwhhgsvbsjskjsk',
+  'JWT_GET_USER_SECRET_KEY': None,
+  'JWT_PUBLIC_KEY': None,
+  'JWT_PRIVATE_KEY': None,
+  'JWT_ALGORITHM': 'HS256',
+  'JWT_VERIFY': True,
+  'JWT_VERIFY_EXPIRATION': True,
+  'JWT_LEEWAY': 0,
+  'JWT_EXPIRATION_DELTA': timedelta(minutes=30),
+  'JWT_AUDIENCE': None,
+  'JWT_ISSUER': None,
+  'JWT_ALLOW_REFRESH': False,
+  'JWT_REFRESH_EXPIRATION_DELTA': timedelta(minutes=30),
+  'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+  'JWT_AUTH_COOKIE': None,
+}
 
 
 # Internationalization
