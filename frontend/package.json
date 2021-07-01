@@ -19,7 +19,9 @@
     "popper.js": "^1.16.1",
     "vee-validate": "^4.4.5",
     "vue": "^3.0.0",
+    "vue-owl-carousel": "^2.0.3",
     "vue-router": "^4.0.8",
+    "vue3-carousel": "^0.1.23",
     "vuex": "^4.0.1",
     "yup": "^0.32.9"
   },
