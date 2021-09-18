@@ -30,11 +30,11 @@
             <a class="nav-link" href="#">How It Works</a>
           </li>
         </ul>
-        <span class="form-inline my-2 my-lg-0 ml-auto">
-          <button class="btn btn-outline-success my-2 my-sm-0 mr-4 signup" data-toggle="collapse" data-target=".navbar-collapse.show">
+        <span class="form-inline my-2 my-lg-0 mt-2">
+          <router-link to="/register" class="btn btn-outline-success px-4 my-2 my-sm-0 mr-4 signup mt-4" data-toggle="collapse" data-target=".navbar-collapse.show">
             Sign Up
-          </button>
-          <router-link to="/login" class="btn btn-success my-2 my-sm-0 ml-4 signin" data-toggle="collapse" data-target=".navbar-collapse.show">
+          </router-link>
+          <router-link to="/login" class="btn btn-success px-4 my-2 my-sm-0 ml-4 signin mt-4" data-toggle="collapse" data-target=".navbar-collapse.show">
             Sign In
           </router-link>
         </span>
@@ -77,6 +77,23 @@ export default {
     color: #2c3e50;
     margin-top: 60px;
   }
+
+  textarea:focus,
+  input[type='text']:focus,
+  input[type='email']:focus,
+  input[type='password']:focus{
+    outline:0 none;
+    border: 1px solid green;
+    /* box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); */
+    box-shadow: none;
+    transition: 0.2s ease;
+  }
+
+  .btn{
+    border-radius: 2px !important;
+    padding: 5px 20px !important;
+  }
+
 
 
   .navbar{
@@ -150,5 +167,30 @@ export default {
       box-shadow: none;
       outline: none;
       border: none;
+  }
+
+  .navbar-nav .nav-item{
+    text-align: left;
+  }
+
+  .navbar-nav .dropdown .dropdown-menu{
+    border: none;
+  }
+
+  @media screen and (max-width: 370px){
+    .brand-image{
+      width: 200px;
+    }
+  }
+
+  @media screen and (max-width: 450px){
+    .navbar-nav .nav-item{
+      padding: 12px 0px 0px 12px;
+    }
+
+    .signin
+    .signup{
+      margin-top: 20px;
+    }
   }
 </style>

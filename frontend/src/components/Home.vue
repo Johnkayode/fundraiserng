@@ -17,8 +17,10 @@
     <div class="carousel-section container">
       <carousel :items-to-show="2" :wrap-around='true'>
         <Slide v-for="image in images" :key="image">
-          <img :src=image.link class='img img-fluid slider-img'>
-          <p class='text-muted mt-4 img-text'>{{image.text}}</p>
+          <div class='carousel-box'>
+            <img :src=image.link class='img img-fluid slider-img'>
+            <p class='text-muted mt-4 img-text'>{{image.text}}</p>
+          </div>
         </Slide>
 
         <template #addons>
@@ -26,18 +28,38 @@
         </template>
       </carousel>
     </div>
-    <div class="featured-section">
+    <div class="featured-section mb-4">
       <div class="container">
         <h3 class='text-success'>Popular Fundraisers</h3> 
         <div class="fundraisers mt-4 container">
           <div class="row">
-            <div v-for="campaign in popular" :key="campaign" class="col-lg-3 col-sm-6 campaign justify-content-center">
-                <img :src=campaign.media class='img img-fluid campaign-image'>
-                <div class='categories'>
-                  <span v-for="category in campaign.categories" :key="category" class='category'>{{category}}</span>
+            <div v-for="campaign in popular" :key="campaign" class="col-lg-3 col-sm-6 campaign">
+                <img :src=campaign.media class='img img-fluid campaign-image mb-2'>
+                <div class='content mt-2'>
+                  <div class='categories'>
+                    <span v-for="category in campaign.categories" :key="category" class='category'>{{category}}</span>
+                  </div>
+                  <ProgressBar :percentage="campaign.percentage"></ProgressBar>
+                  <h4 class='campaign-title'>{{campaign.title}}</h4>
+                  <h6 class='campaign-amount'>NGN {{campaign.amount_raised.toLocaleString()}} raised</h6>
+                  <h6 class='campaign-deadline'>{{campaign.deadline}}</h6>
                 </div>
-                <h4 class='text-muted align-left campaign-title'>{{campaign.title}}</h4>
             </div>
+          </div>
+        <div class="row mt-4 justify-content-center">
+          <div class='col-lg-12 mt-4'>
+            <a class='more-btn mt-8'>MORE FUNDRAISERS</a>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="category-section mb-4">
+      <div class="container">
+        <h3 class="text-success">Create Fundraisers For</h3>
+        <div class="row">
+          <div v-for="category in categories" :key="category" class="col-lg-4 mb-5 mr-3">
+              <p class='me-2 bg-success category-item text-light'>{{category}}</p>
           </div>
         </div>
       </div>
@@ -48,6 +70,7 @@
 <script>
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Navigation } from 'vue3-carousel';
+import ProgressBar from './ProgressBar.vue'
 
 export default {
   name: 'Home',
@@ -55,6 +78,7 @@ export default {
     Carousel,
     Slide,
     Navigation,
+    ProgressBar,
   },
   data(){
     return {
@@ -70,7 +94,8 @@ export default {
         {'media': require(`@/assets/4.jpg`), 'title': "Let's get Ayo to Harvard Business School", 'categories': ['Education'],'percentage': 60, 'amount_raised': 1360000, 'deadline': '1 month left'},
         {'media': require(`@/assets/2.png`), 'title': "Operation Send 100 Kogi Kids to School", 'categories': ['Education','Charity'],'percentage': 70, 'amount_raised': 105750, 'deadline': '2 weeks left'},
         {'media': require(`@/assets/5.jpg`), 'title': "Help Jay get a laptop to code", 'categories': ['Tech','Education'],'percentage': 15, 'amount_raised': 12050, 'deadline': '2 months left'}
-      ]
+      ],
+      categories: ['Health','Education','Emergency','Charity','Personal','Business']
     }
   }
   
@@ -138,9 +163,10 @@ a {
 }
 
 .featured-section{
-  padding: 30px 0px 50px 0px;
+  padding: 30px 20px 50px 20px;
   background: rgb(213, 245, 213);
 }
+
 
 .carousel-section{
   padding: 100px 0px;
@@ -160,13 +186,23 @@ a {
   height: 400px;
 }
 
+
 .campaign-title{
-  text-align: left;
   margin-top: 10px;
+  text-align: left;
+  color: #222222;
+}
+
+.campaign-deadline,
+.campaign-amount{
+  text-align: left;
+  color: #222222;
 }
 
 .campaign-image{
+  width: 300px;
   height: 200px;
+  float: left;
 }
 
 .categories{
@@ -179,6 +215,7 @@ a {
   padding: 6px 9px;
   border-radius: 2px;
   font-size: 10px;
+  letter-spacing: 1.5px;
   background: green;
   color: #ffffff;
   cursor: pointer;
@@ -199,6 +236,34 @@ a {
   .img-text{
     font-size: 10px;
   }
+}
+
+.more-btn{
+  margin: 50px 0px;
+  padding: 10px 35px;
+  border: 2px solid green;
+  background: none;
+  color: green;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.1s ease-in;
+}
+
+.more-btn:hover{
+  color: rgb(7, 73, 7);
+  border: 2px solid rgb(7, 73, 7);
+  transition: 0.1s ease-out;
+}
+
+.category-section .container h3{
+  margin-bottom: 120px;
+}
+
+.category-item{
+  padding: 70px 0px;
+  cursor: pointer;
 }
 
 </style>

@@ -13,6 +13,7 @@ class AuthService{
             password: user.password
         }).then(response => {
             console.log(response.data)
+            return response.data
         })
        
     }
@@ -22,6 +23,7 @@ class AuthService{
             confirmation_code: code
         }).then(response => {
             console.log(response.data)
+            return response.data
         })
     }
 
