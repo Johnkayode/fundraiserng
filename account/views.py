@@ -26,7 +26,7 @@ class ConfirmAccount(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-    # Handle cases where confirmation code is not attached to an account
+        # Handle cases where confirmation code is not attached to an account
         
         try:
             user = CustomUser.objects.get(
